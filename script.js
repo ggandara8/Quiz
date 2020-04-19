@@ -1,84 +1,50 @@
-var startEl = document.querySelector(".start-btn");
-var continueEl = document.querySelector(".container2");
-var contentEl = document.querySelector(".container");
-var instructionsEl = document.querySelector(".instructions");
-var answerBtnAEl = document.querySelector(".answer-button");
 var continueBtnEl = document.querySelector(".continue-btn");
-var posEl = document.querySelector(".pos");
+var startEl = document.querySelector(".start-btn");
+var contentEl = document.querySelector(".container");
+var continueEl = document.querySelector(".container2");
+var option1El = document.getElementById("option1");
+var option2El = document.getElementById("option2");
+var option3El = document.getElementById("option3");
+var option4El = document.getElementById("option4");
+var presentationTextEl = document.getElementById("presentationText");
+var timerEl = document.getElementById("timer");
 
-
-
-startEl.addEventListener("click", startQuiz);
+startEl.addEventListener("click", function(){
+    startQuiz();
+    Countdown();
+});
 continueBtnEl.addEventListener("click", nextQuestion);
 
-var count = 0;
+var questionNumber = 0;
+var time = 60;
 
 function startQuiz() {
 
     contentEl.classList.add("hide");
     continueEl.classList.remove("hide"); 
-        
-        //the question
-        var ques = document.createElement("h3");
-        var q = document.createTextNode(questions[count]["q"]);
-        ques.appendChild(q);
-        posEl.appendChild(ques);
-        console.log(q);
 
-        //the list and buttons
-        var qlist = document.createElement("li");
-        var btn = document.createElement("button");
-        btn.classList.add("answer-button");
-        qlist.appendChild(btn);
-
-        //add text to button
-        var optText = document.createTextNode(questions[count]["options"][0]);
-        btn.appendChild(optText);
-        console.log(optText);
-        posEl.appendChild(btn);
+    //the question
+    presentationTextEl.textContent = questions[questionNumber].q;
     
-        //the list and buttons
-        var qlist = document.createElement("li");
-        var btn = document.createElement("button");
-        btn.classList.add("answer-button");
-        qlist.appendChild(btn);
-
-        //add text to button
-        var optText = document.createTextNode(questions[count]["options"][1]);
-        btn.appendChild(optText);
-        console.log(optText);
-        posEl.appendChild(btn);
-
-        //the list and buttons
-        var qlist = document.createElement("li");
-        var btn = document.createElement("button");
-        btn.classList.add("answer-button");
-        qlist.appendChild(btn);
-
-        //add text to button
-        var optText = document.createTextNode(questions[count]["options"][2]);
-        btn.appendChild(optText);
-        console.log(optText);
-        posEl.appendChild(btn);
-
-        //the list and buttons
-        var qlist = document.createElement("li");
-        var btn = document.createElement("button");
-        btn.classList.add("answer-button");
-        qlist.appendChild(btn);
-
-        //add text to button
-        var optText = document.createTextNode(questions[count]["options"][3]);
-        btn.appendChild(optText);
-        console.log(optText);
-        posEl.appendChild(btn);
+    //options
+    option1El.textContent = questions[questionNumber].options[0];
+    option2El.textContent = questions[questionNumber].options[1];
+    option3El.textContent = questions[questionNumber].options[2];
+    option4El.textContent = questions[questionNumber].options[3];
 }
 
 function nextQuestion() {
-    count++;
+    questionNumber++;
     startQuiz();
 }
 
+function Countdown() {
+    timerEl.textContent = time;
+    time--;
+
+    setTimeout(function() {Countdown();}, 1000);
+
+}
 
 
 
@@ -112,7 +78,7 @@ var questions = [
 
 ]
 
-
+console.log(questions[0].options[0]);
 // function QuestionRender (questions) {
    
 //     var Q = questions[arr];

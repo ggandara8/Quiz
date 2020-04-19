@@ -15,7 +15,7 @@
         <section class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li>
-                <h6><strong>Timer: </strong><span>0</span></h6>
+                <h6><strong>Timer: </strong><span id="timer">60</span></h6>
             </li>
           </ul>
         </section>
@@ -28,12 +28,24 @@
                 <button class="start-btn">Start Quiz</button>
         </section>
 
-        <section class="container2 instructions hide">
+        <section class="container2 hide">
+            <h3 id="presentationText"></h3>
+            <br>
             <ul class="pos">
-
+                <li> 
+                    <button id="option1"></button>
+                </li>
+                <li>
+                    <button id="option2"></button>
+                </li>
+                <li>
+                    <button id="option3"></button>
+                </li>
+                <li>
+                    <button id="option4"></button>
+                </li>
+                <li id="correctOrNot"></li>
             </ul>
-                
-               
         <button class="continue-btn">Continue</button>
         </section>
         
