@@ -16,7 +16,7 @@ startEl.addEventListener("click", function(){
 continueBtnEl.addEventListener("click", nextQuestion);
 
 var questionNumber = 0;
-var time = 60;
+var time = 30;
 
 function startQuiz() {
 
@@ -43,9 +43,14 @@ function Countdown() {
     time--;
 
     setTimeout(function() {Countdown();}, 1000);
-
+    stopTimer();
 }
 
+function stopTimer() {
+   if (time < 1){ 
+    time = 0;
+   }
+}
 
 
 
@@ -76,17 +81,4 @@ var questions = [
         answer: 1 
     }
 
-]
-
-console.log(questions[0].options[0]);
-// function QuestionRender (questions) {
-   
-//     var Q = questions[arr];
-//     instructionsEl.textContent = Q.question;
-//     answerBtnAEl.textContent = Q.a;
-//     answerBtnBEl.textContent = Q.b;
-//     answerBtnCEl.textContent = Q.c;
-//     answerBtnDEl.textContent = Q.d;
-//  console.log(Q);
-//  console.log(correct);
-//  }
+];
