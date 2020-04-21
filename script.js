@@ -10,137 +10,6 @@ var timerEl = document.getElementById("timer");
 var correctOrNotEl = document.getElementById("correctOrNot");
 var scorePageEl = document.querySelector(".scorePage");
 
-startEl.addEventListener("click", function(){
-    startQuiz();
-    Countdown();
-});
-
-var questionNumber = 0;
-var time = 45;
-var score = 0;
-var correctMsg = "Correct";
-var wrongMsg = "Wrong"; 
-
-function startQuiz() {
-
-    contentEl.classList.add("hide");
-    continueEl.classList.remove("hide"); 
-
-    //the question
-    presentationTextEl.textContent = questions[questionNumber].q;
-    
-    //options
-    option1El.textContent = questions[questionNumber].options[0];
-    option2El.textContent = questions[questionNumber].options[1];
-    option3El.textContent = questions[questionNumber].options[2];
-    option4El.textContent = questions[questionNumber].options[3];
-}
-
-function Countdown() {
-    timerEl.textContent = time;
-    time--;
-
-    setTimeout(function() {
-    Countdown();}, 1000);
-    
-    stopTimer();
-}
-
-function stopTimer() {
-   if (time < 1){ 
-    time = 0;
-   }
-}
-
-option1El.addEventListener("click", function(){
-    if (questionNumber === 0 || questionNumber === 1){ 
-        
-        questionNumber++;
-        score +=5;
-        correctOrNotEl.innerHTML = correctMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 400);
-        
-        startQuiz();
-    } else {
-        questionNumber++;
-        correctOrNotEl.textContent = wrongMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 400);
-        
-        startQuiz();
-    }
-});
-
-option3El.addEventListener("click", function(){
-    if (questionNumber === 2 || questionNumber === 3){    
-        questionNumber++;
-        score +=5;
-
-        correctOrNotEl.innerHTML = correctMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 500);
-
-        startQuiz();
-    } else {
-        questionNumber++;
-
-        correctOrNotEl.textContent = wrongMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 500);
-
-        startQuiz();
-    }
-});
-     
-option2El.addEventListener("click", function(){
-    if (questionNumber === 4){  
-        questionNumber++;  
-        score +=5;
-
-        correctOrNotEl.innerHTML = correctMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 500);
-
-        startQuiz();
-
-    } else {
-        questionNumber++;
-
-        correctOrNotEl.textContent = wrongMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 500);
-
-        startQuiz();
-    }
-});
-
-option4El.addEventListener("click", function(){
-        questionNumber++;
-
-        correctOrNotEl.textContent = wrongMsg;
-        
-        setTimeout(function(){
-            correctOrNotEl.innerHTML = '';
-        }, 500);
-
-        startQuiz();
-        
-});
-
-
 var questions = [
     {
         q: "Inside which element do we put the Javascript?",
@@ -169,3 +38,113 @@ var questions = [
     }
 
 ];
+
+var questionNumber = 0;
+var time = 45;
+var score = 0;
+var correctMsg = "Correct";
+var wrongMsg = "Wrong";
+// ----------------------------------------------------------------------//
+
+// event for each button in every situation
+startEl.addEventListener("click", function(){
+    startQuiz();
+    Countdown();
+});
+
+option1El.addEventListener("click", function(){
+    if (questionNumber === 0 || questionNumber === 1){ 
+       correctAnswer();
+    } else {
+       wrongAnswer();
+    }
+});
+
+
+option3El.addEventListener("click", function(){
+    if (questionNumber === 2 || questionNumber === 3){ 
+       correctAnswer();
+    } else {
+       wrongAnswer();
+    }
+});
+     
+option2El.addEventListener("click", function(){
+    if (questionNumber === 4){  
+      correctAnswer();
+
+    } else {
+      wrongAnswer();
+    }
+});
+
+option4El.addEventListener("click", function(){
+      wrongAnswer();
+        
+}); 
+// ----------------------------------------------------------------------//
+// functions
+function startQuiz() {
+
+    contentEl.classList.add("hide");
+    continueEl.classList.remove("hide"); 
+
+    //the question
+    presentationTextEl.textContent = questions[questionNumber].q;
+    
+    //options
+    option1El.textContent = questions[questionNumber].options[0];
+    option2El.textContent = questions[questionNumber].options[1];
+    option3El.textContent = questions[questionNumber].options[2];
+    option4El.textContent = questions[questionNumber].options[3];
+}
+
+// timer count
+function Countdown() {
+    timerEl.textContent = time;
+    time--;
+
+    setTimeout(function() {
+    Countdown();}, 1000);
+    
+    stopTimer();
+}
+
+// stop timer at 0
+function stopTimer() {
+   if (time < 1){ 
+    time = 0;
+   }
+}
+
+// keep score, increase timer and show correct answer
+function correctAnswer(){
+    questionNumber++;
+    
+    score +=5;
+
+    correctOrNotEl.innerHTML = correctMsg;
+        
+    setTimeout(function(){
+        correctOrNotEl.innerHTML = '';
+    }, 500);
+
+    startQuiz();
+
+    time+=5;
+}
+
+// show wrong answer and decrease timer 
+function wrongAnswer(){
+    questionNumber++;
+    
+    correctOrNotEl.textContent = wrongMsg;
+    
+    setTimeout(function(){
+        correctOrNotEl.innerHTML = '';
+    }, 400);
+    
+    startQuiz();
+
+    time-=5;
+}
