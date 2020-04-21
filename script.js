@@ -133,6 +133,7 @@ option4El.addEventListener("click", function(){
         }, 500);
 
         startQuiz();
+        
 });
 
 
