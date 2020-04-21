@@ -112,6 +112,8 @@ option2El.addEventListener("click", function(){
             correctOrNotEl.innerHTML = '';
         }, 500);
 
+        startQuiz();
+
     } else {
         questionNumber++;
 
@@ -120,6 +122,8 @@ option2El.addEventListener("click", function(){
         setTimeout(function(){
             correctOrNotEl.innerHTML = '';
         }, 500);
+
+        startQuiz();
     }
 });
 
