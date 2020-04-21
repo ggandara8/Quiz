@@ -1,4 +1,3 @@
-var continueBtnEl = document.querySelector(".continue-btn");
 var startEl = document.querySelector(".start-btn");
 var contentEl = document.querySelector(".container");
 var continueEl = document.querySelector(".container2");
@@ -8,20 +7,24 @@ var option3El = document.getElementById("option3");
 var option4El = document.getElementById("option4");
 var presentationTextEl = document.getElementById("presentationText");
 var timerEl = document.getElementById("timer");
+var correctOrNotEl = document.getElementById("correctOrNot");
 
 startEl.addEventListener("click", function(){
     startQuiz();
     Countdown();
 });
-continueBtnEl.addEventListener("click", nextQuestion);
 
 var questionNumber = 0;
-var time = 30;
+var time = 45;
+var score = 0;
+var correctMsg = "Correct";
+var wrongMsg = "Wrong"; 
 
 function startQuiz() {
 
     contentEl.classList.add("hide");
     continueEl.classList.remove("hide"); 
+    
 
     //the question
     presentationTextEl.textContent = questions[questionNumber].q;
@@ -33,16 +36,13 @@ function startQuiz() {
     option4El.textContent = questions[questionNumber].options[3];
 }
 
-function nextQuestion() {
-    questionNumber++;
-    startQuiz();
-}
-
 function Countdown() {
     timerEl.textContent = time;
     time--;
 
-    setTimeout(function() {Countdown();}, 1000);
+    setTimeout(function() {
+    Countdown();}, 1000);
+    
     stopTimer();
 }
 
@@ -52,6 +52,91 @@ function stopTimer() {
    }
 }
 
+option1El.addEventListener("click", function(){
+    if (questionNumber === 0 || questionNumber === 1){ 
+        
+        questionNumber++;
+        score +=5;
+        correctOrNotEl.innerHTML = correctMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+        
+        startQuiz();
+    } else {
+        questionNumber++;
+        correctOrNotEl.textContent = wrongMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+        
+        startQuiz();
+    }
+});
+
+option3El.addEventListener("click", function(){
+    if (questionNumber === 2 || questionNumber === 3){    
+        questionNumber++;
+        score +=5;
+
+        correctOrNotEl.innerHTML = correctMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+
+        startQuiz();
+    } else {
+        questionNumber++;
+
+        correctOrNotEl.textContent = wrongMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+
+        startQuiz();
+    }
+});
+     
+option2El.addEventListener("click", function(){
+    if (questionNumber === 4){  
+        questionNumber++;  
+        score +=5;
+
+        correctOrNotEl.innerHTML = correctMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+
+        startQuiz();
+    } else {
+        questionNumber++;
+
+        correctOrNotEl.textContent = wrongMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+
+        startQuiz();
+    }
+});
+
+option4El.addEventListener("click", function(){
+        questionNumber++;
+
+        correctOrNotEl.textContent = wrongMsg;
+        
+        setTimeout(function(){
+            correctOrNotEl.innerHTML = '';
+        }, 400);
+        
+        startQuiz();
+});
 
 
 var questions = [
