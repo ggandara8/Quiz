@@ -1,4 +1,4 @@
-var startEl = document.querySelector(".start-btn");
+var startEl = document.getElementById("start-btn");
 var contentEl = document.querySelector(".container");
 var continueEl = document.querySelector(".container2");
 var option1El = document.getElementById("option1");
@@ -8,6 +8,7 @@ var option4El = document.getElementById("option4");
 var presentationTextEl = document.getElementById("presentationText");
 var timerEl = document.getElementById("timer");
 var correctOrNotEl = document.getElementById("correctOrNot");
+var scorePageEl = document.querySelector(".scorePage");
 
 startEl.addEventListener("click", function(){
     startQuiz();
@@ -24,7 +25,6 @@ function startQuiz() {
 
     contentEl.classList.add("hide");
     continueEl.classList.remove("hide"); 
-    
 
     //the question
     presentationTextEl.textContent = questions[questionNumber].q;
@@ -85,7 +85,7 @@ option3El.addEventListener("click", function(){
         
         setTimeout(function(){
             correctOrNotEl.innerHTML = '';
-        }, 400);
+        }, 500);
 
         startQuiz();
     } else {
@@ -95,7 +95,7 @@ option3El.addEventListener("click", function(){
         
         setTimeout(function(){
             correctOrNotEl.innerHTML = '';
-        }, 400);
+        }, 500);
 
         startQuiz();
     }
@@ -110,9 +110,8 @@ option2El.addEventListener("click", function(){
         
         setTimeout(function(){
             correctOrNotEl.innerHTML = '';
-        }, 400);
+        }, 500);
 
-        startQuiz();
     } else {
         questionNumber++;
 
@@ -120,9 +119,7 @@ option2El.addEventListener("click", function(){
         
         setTimeout(function(){
             correctOrNotEl.innerHTML = '';
-        }, 400);
-
-        startQuiz();
+        }, 500);
     }
 });
 
@@ -133,8 +130,8 @@ option4El.addEventListener("click", function(){
         
         setTimeout(function(){
             correctOrNotEl.innerHTML = '';
-        }, 400);
-        
+        }, 500);
+
         startQuiz();
 });
 

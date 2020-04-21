@@ -1,3 +1,8 @@
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: #CCFFFF;
+}
+
 a {
     font-size: 20px;
     color: black;
@@ -17,7 +22,7 @@ button {
     background-color: blue;
     color: white;
     padding: 5px;
-    width: 13%;
+    width: 14%;
     font-size: 15px;
 }
 
@@ -32,6 +37,11 @@ button {
 
 .hide {
     display: none;
+}
+
+#correctOrNot {
+    color: lawngreen;
+    font-size: 25px;
 }
 
 

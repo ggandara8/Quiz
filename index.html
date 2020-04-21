@@ -6,11 +6,12 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Comic+Neue:700&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a href="#"><strong>View High Scores</strong></a>
+        <a class="navbar-brand" href="#"><strong>View High Scores</strong></a>
         
         <section class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
@@ -25,7 +26,7 @@
         <section class="container">
             <h2 class="header">Coding Quiz Challenge</h2>
                 <p>Try to answer the following questions before the time runs out. Good Luck!</p>
-                <button class="start-btn">Start Quiz</button>
+                <button type="button" class="btn btn-primary" id="start-btn" >Start Quiz</button>
         </section>
 
         <section class="container2 hide">
@@ -33,24 +34,23 @@
             <br>
             <ul class="pos">
                 <li> 
-                    <button id="option1"></button>
+                    <button type="button" class="btn btn-primary" id="option1"></button>
                 </li>
                 <li>
-                    <button id="option2"></button>
+                    <button type="button" class="btn btn-primary" id="option2"></button>
                 </li>
                 <li>
-                    <button id="option3"></button>
+                    <button type="button" class="btn btn-primary" id="option3"></button>
                 </li>
                 <li>
-                    <button id="option4"></button>
+                    <button type="button" class="btn btn-primary" id="option4"></button>
                 </li>
                 <li id="correctOrNot"></li>
             </ul>
-        <!-- <button class="continue-btn">Continue</button> -->
         </section>
 
         <section class="scorePage hide">
-
+            Test
         </section>
         
      </main>
