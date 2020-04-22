@@ -8,35 +8,32 @@ var option4El = document.getElementById("option4");
 var presentationTextEl = document.getElementById("presentationText");
 var timerEl = document.getElementById("timer");
 var correctOrNotEl = document.getElementById("correctOrNot");
-var scorePageEl = document.querySelector(".scorePage");
+var scorePageEl = document.querySelector(".container3");
+var showFinalScoreEl = document.getElementById("ShowfinalScore");
+var InfoEl = document.getElementById("info");
+var resultsBtnEl = document.getElementById("results");
 
 var questions = [
     {
         q: "Inside which element do we put the Javascript?",
         options: ["<script>", "<js>", "<scripting>", "<javascripting>" ],
-        answer: 0
     },
     {
         q: "How do you create a Javascript variable?",
         options: ["var name", "v name", "variable name", "vr name" ],
-        answer: 0
     },
     {
         q: "Which operator is used to assign a value to a variable?",
-        options: ["x", "*", "=", "-" ],
-        answer: 2 
+        options: ["x", "*", "=", "-" ], 
     },
     {
         q:  "Choose the correct HTML element for the largest heading:",
-        options: ["<h6>", "<head>","<h1>", "<heading>"],
-        answer: 2 
+        options: ["<h6>", "<head>","<h1>", "<heading>"], 
     },
     {
         q:  "What is the correct HTML element for inserting a line break?",
         options: ["<brk>", "<br>","<lb>", "<break>"],
-        answer: 1 
     }
-
 ];
 
 var questionNumber = 0;
@@ -58,6 +55,7 @@ option1El.addEventListener("click", function(){
     } else {
        wrongAnswer();
     }
+    SubmitQuiz();
 });
 
 
@@ -67,6 +65,7 @@ option3El.addEventListener("click", function(){
     } else {
        wrongAnswer();
     }
+    SubmitQuiz();
 });
      
 option2El.addEventListener("click", function(){
@@ -76,18 +75,24 @@ option2El.addEventListener("click", function(){
     } else {
       wrongAnswer();
     }
+    SubmitQuiz();
 });
 
 option4El.addEventListener("click", function(){
       wrongAnswer();
-        
-}); 
+      SubmitQuiz();
+});
+
+resultsBtnEl.addEventListener("click", function(){
+    ScorePage();
+});
 // ----------------------------------------------------------------------//
 // functions
 function startQuiz() {
 
     contentEl.classList.add("hide");
     continueEl.classList.remove("hide"); 
+    resultsBtnEl.classList.add("hide");
 
     //the question
     presentationTextEl.textContent = questions[questionNumber].q;
@@ -119,32 +124,48 @@ function stopTimer() {
 
 // keep score, increase timer and show correct answer
 function correctAnswer(){
+    if (questionNumber < 4){
     questionNumber++;
-    
+    }
     score +=5;
 
     correctOrNotEl.innerHTML = correctMsg;
         
     setTimeout(function(){
         correctOrNotEl.innerHTML = '';
-    }, 500);
+    }, 300);
 
     startQuiz();
 
     time+=5;
+
+    
 }
 
 // show wrong answer and decrease timer 
 function wrongAnswer(){
+    if (questionNumber < 4){
     questionNumber++;
-    
+    }
     correctOrNotEl.textContent = wrongMsg;
     
     setTimeout(function(){
         correctOrNotEl.innerHTML = '';
-    }, 400);
+    }, 300);
     
     startQuiz();
 
     time-=5;
+}
+
+function SubmitQuiz() {
+
+    if(questionNumber === 4){
+        resultsBtnEl.classList.remove("hide");
+    }
+}
+
+function ScorePage() {
+    scorePageEl.classList.remove("hide");
+    continueEl.classList.add("hide");
 }
