@@ -10,7 +10,7 @@ var timerEl = document.getElementById("timer");
 var correctOrNotEl = document.getElementById("correctOrNot");
 var scorePageEl = document.querySelector(".container3");
 var showFinalScoreEl = document.getElementById("ShowfinalScore");
-var InfoEl = document.getElementById("info");
+var scoreEl = document.getElementById("score");
 var resultsBtnEl = document.getElementById("results");
 
 var questions = [
@@ -36,8 +36,8 @@ var questions = [
     }
 ];
 
-var questionNumber = 0;
-var time = 45;
+var questionNumber =45;
+var time = 3;
 var score = 0;
 var correctMsg = "Correct";
 var wrongMsg = "Wrong";
@@ -113,6 +113,9 @@ function Countdown() {
     Countdown();}, 1000);
     
     stopTimer();
+    if (time === 0){
+        ScorePage();
+    }
 }
 
 // stop timer at 0
@@ -168,4 +171,10 @@ function SubmitQuiz() {
 function ScorePage() {
     scorePageEl.classList.remove("hide");
     continueEl.classList.add("hide");
+    
+    if(score >= 15){
+    scoreEl.textContent = "Great Job: " + score + "pts"; 
+    } else {
+    scoreEl.textContent = "You have to study: " + score + "pts";   
+    }
 }
