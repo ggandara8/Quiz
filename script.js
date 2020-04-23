@@ -36,8 +36,8 @@ var questions = [
     }
 ];
 
-var questionNumber =45;
-var time = 3;
+var questionNumber =0;
+var time = 45;
 var score = 0;
 var correctMsg = "Correct";
 var wrongMsg = "Wrong";
