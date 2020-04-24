@@ -1,11 +1,7 @@
 body {
     font-family: 'Comic Neue', cursive;
-    background-color: #CCFFFF;
-}
-
-a {
-    font-size: 20px;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.877);
+    color: white;
 }
 
 .container, .container2, .container3 {
@@ -21,7 +17,7 @@ button {
     font-size: 15px;
 }
 
-.pos {
+.pos, #highScores {
     list-style-type: none;
     margin-right: 400px;
 }
@@ -47,3 +43,9 @@ button {
     width: 6%;
 }
 
+#ViewHS {
+    background-color: transparent !important;
+    border: none;
+    font-size: 20px;
+    color: white;
+}

@@ -12,6 +12,10 @@ var scorePageEl = document.querySelector(".container3");
 var showFinalScoreEl = document.getElementById("ShowfinalScore");
 var scoreEl = document.getElementById("score");
 var resultsBtnEl = document.getElementById("results");
+var restartEl = document.getElementById("restart");
+var viewHSEl = document.getElementById("ViewHS");
+var HSinputEl = document.getElementById("HSinput");
+var backBtnEl = document.getElementById("backBtn");
 
 var questions = [
     {
@@ -36,15 +40,16 @@ var questions = [
     }
 ];
 
-var questionNumber =0;
-var time = 45;
+var questionNumber = 0;
+var time = 30;
 var score = 0;
 var correctMsg = "Correct";
 var wrongMsg = "Wrong";
 // ----------------------------------------------------------------------//
 
 // event for each button in every situation
-startEl.addEventListener("click", function(){
+startEl.addEventListener("click", function(event){
+    event.preventDefault();
     startQuiz();
     Countdown();
 });
@@ -85,7 +90,27 @@ option4El.addEventListener("click", function(){
 
 resultsBtnEl.addEventListener("click", function(){
     ScorePage();
+    time = 0;
 });
+
+restartEl.addEventListener("click", RestartQuiz);
+
+viewHSEl.addEventListener("click", function(){
+    time = 0;
+    contentEl.classList.add("hide");
+    ScorePage();
+    HSinputEl.classList.add("hide");
+    backBtnEl.classList.remove("hide");
+});
+
+backBtnEl.addEventListener("click", function(){
+    time = 30;
+    contentEl.classList.remove("hide");
+    scorePageEl.classList.add("hide");
+    HSinputEl.classList.remove("hide");
+    backBtnEl.classList.add("hide");
+});
+
 // ----------------------------------------------------------------------//
 // functions
 function startQuiz() {
@@ -93,6 +118,7 @@ function startQuiz() {
     contentEl.classList.add("hide");
     continueEl.classList.remove("hide"); 
     resultsBtnEl.classList.add("hide");
+    backBtnEl.classList.add("hide");
 
     //the question
     presentationTextEl.textContent = questions[questionNumber].q;
@@ -140,9 +166,7 @@ function correctAnswer(){
 
     startQuiz();
 
-    time+=5;
-
-    
+    time+=5;    
 }
 
 // show wrong answer and decrease timer 
@@ -177,4 +201,12 @@ function ScorePage() {
     } else {
     scoreEl.textContent = "You have to study: " + score + "pts";   
     }
+}
+
+function RestartQuiz() {
+    scorePageEl.classList.add("hide");
+    time = 30;
+    questionNumber = 0;
+    score = 0;
+    startQuiz();
 }
