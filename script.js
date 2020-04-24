@@ -16,6 +16,9 @@ var restartEl = document.getElementById("restart");
 var viewHSEl = document.getElementById("ViewHS");
 var HSinputEl = document.getElementById("HSinput");
 var backBtnEl = document.getElementById("backBtn");
+var addBtnEl = document.getElementById("addBtn");
+var HsListEl = document.getElementById("HS-list");
+var nameEl = document.getElementById("name");
 
 var questions = [
     {
@@ -45,6 +48,13 @@ var time = 30;
 var score = 0;
 var correctMsg = "Correct";
 var wrongMsg = "Wrong";
+var highScoreUser = [
+    {
+        name: "Gerardo",
+        score: score
+    }];
+
+init();
 // ----------------------------------------------------------------------//
 
 // event for each button in every situation
@@ -111,8 +121,25 @@ backBtnEl.addEventListener("click", function(){
     backBtnEl.classList.add("hide");
 });
 
+addBtnEl.addEventListener("click", function(){
+    event.preventDefault();
+    var UserNameText = nameEl.value.trim();
+
+    if (UserNameText === "") {
+        return;
+    }
+
+    highScoreUser.push(UserNameText);
+    nameEl.value = "";
+
+    // Store updated todos in localStorage, re-render the list
+    storeUsers();
+    renderUsers();
+});
+
 // ----------------------------------------------------------------------//
 // functions
+
 function startQuiz() {
 
     contentEl.classList.add("hide");
@@ -209,4 +236,31 @@ function RestartQuiz() {
     questionNumber = 0;
     score = 0;
     startQuiz();
+}
+
+function storeUsers() {
+    localStorage.setItem("Users", JSON.stringify(highScoreUser));
+}
+
+function renderUsers() {
+    HsListEl.innerHTML = "";
+
+    for (var i = 0; i < highScoreUser.length; i++){
+        var userN = highScoreUser[i];
+        var li = document.createElement("li");
+
+        li.textContent = userN;
+        
+        HsListEl.appendChild(li);
+    }
+}
+
+function init() {
+    var storedUsers = JSON.parse(localStorage.getItem("Users"));
+    
+    if (storedUsers !== null) {
+        highScoreUser = storedUsers;
+    }
+
+    renderUsers();
 }

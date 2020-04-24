@@ -17,7 +17,7 @@ button {
     font-size: 15px;
 }
 
-.pos, #highScores {
+.pos, #HS-list {
     list-style-type: none;
     margin-right: 400px;
 }
