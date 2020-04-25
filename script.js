@@ -48,11 +48,7 @@ var time = 30;
 var score = 0;
 var correctMsg = "Correct";
 var wrongMsg = "Wrong";
-var highScoreUser = [
-    {
-        name: "Gerardo",
-        score: score
-    }];
+var highScoreUser = [];
 
 init();
 // ----------------------------------------------------------------------//
@@ -249,7 +245,7 @@ function renderUsers() {
         var userN = highScoreUser[i];
         var li = document.createElement("li");
 
-        li.textContent = userN;
+        li.textContent = userN + ":  " + score + "pts";
         
         HsListEl.appendChild(li);
     }
