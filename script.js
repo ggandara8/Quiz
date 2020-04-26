@@ -19,6 +19,7 @@ var backBtnEl = document.getElementById("backBtn");
 var addBtnEl = document.getElementById("addBtn");
 var HsListEl = document.getElementById("HS-list");
 var nameEl = document.getElementById("name");
+// var btnEl = document.querySelector(".btn");
 
 var questions = [
     {
